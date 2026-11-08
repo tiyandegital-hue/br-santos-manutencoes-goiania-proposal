@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.className += " js";</script>
+<title>Demonstração do bot de triagem — Santos Manutenções | Encanador 24h Goiânia</title>
+<meta name="description" content="Teste a demonstração do bot de triagem da Santos Manutenções: ele entende a urgência, pede foto e endereço, mostra a faixa da taxa e agenda — e chama um humano quando precisa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800;125,900&family=Public+Sans:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="wordmark" href="index.html" aria-label="Santos Manutenções — Início"><span class="mark" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg></span>Santos Manutenções</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Abrir menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    <nav class="mainnav" id="mainnav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="bot.html" aria-current="page">Demonstração do bot</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="como-funciona.html">Como funciona</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+    <div class="topbar-right">
+      <span class="plantao"><span class="dot" aria-hidden="true"></span>Plantão 24h</span>
+      <a class="btn btn-wa btn-sm" href="https://wa.me/5562992633484?text=Ol%C3%A1%2C%20preciso%20de%20um%20encanador%20urgente." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <div class="demo-label">Demonstração — simulação do atendimento. No WhatsApp real, um humano confirma cada agendamento.</div>
+      <div class="sec-head reveal">
+        <p class="eyebrow">Telemetria &amp; protocolo simulado</p>
+        <h1 style="font-size:clamp(36px,6vw,72px)">Demonstração do bot de <span class="yl">triagem</span></h1>
+        <p class="mono">SYS//BOT-CONSOLE // Modo de teste automatizado</p>
+      </div>
+
+      <!-- Progress rail -->
+      <div class="rail" role="list" aria-label="Etapas da triagem">
+        <div class="rail-step active" role="listitem"><span class="n">Etapa 1/5</span><b>Identificar problema</b><p>Classificação preliminar do sinistro hidráulico</p></div>
+        <div class="rail-step" role="listitem"><span class="n">Etapa 2/5</span><b>Nível de urgência</b><p>Cálculo de gravidade e contenção imediata</p></div>
+        <div class="rail-step" role="listitem"><span class="n">Etapa 3/5</span><b>Foto da avaria</b><p>Inspeção visual preliminar da tubulação</p></div>
+        <div class="rail-step" role="listitem"><span class="n">Etapa 4/5</span><b>Endereço do chamado</b><p>Geolocalização para cálculo de deslocamento</p></div>
+        <div class="rail-step" role="listitem"><span class="n">Etapa 5/5</span><b>Agendamento &amp; confirmação</b><p>Faixa de taxa e liberação do técnico de plantão</p></div>
+      </div>
+
+      <div class="bot-layout">
+        <!-- PHONE FRAME — full 5-step flow -->
+        <div class="phone" role="region" aria-label="Simulação completa do bot de triagem">
+          <div class="phone-screen" style="height:600px">
+            <div class="chat-head">
+              <span class="chat-avatar" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg></span>
+              <div class="chat-id"><b>Santos Manutenções</b><span>Online · Triagem automatizada 24h</span></div>
+              <span class="chat-ticket">TKT-8842<br>ID: SIM-9481</span>
+            </div>
+            <div class="chat-body" id="bot-chat-body" aria-live="polite">
+              <div class="chat-date">HOJE · DEMONSTRAÇÃO</div>
+            </div>
+            <div class="chat-input">
+              <input id="bot-chat-input" type="text" placeholder="Digite sua mensagem…" aria-label="Digite sua mensagem">
+              <button class="chat-send" id="bot-chat-send" type="button" aria-label="Enviar mensagem"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+            </div>
+            <div class="chat-foot"><span>Simulação — Demonstração</span><button type="button" id="human-escape" style="color:var(--green);font:inherit;letter-spacing:.14em;text-transform:uppercase">Falar com um humano</button></div>
+          </div>
+        </div>
+
+        <aside class="bot-side">
+          <div>
+            <p class="eyebrow">Como testar</p>
+            <h2 style="font-size:clamp(24px,3vw,34px);margin-top:12px">Toque nas opções e veja a triagem acontecer.</h2>
+            <p class="lede" style="margin-top:12px;font-size:16px">São 5 etapas: problema, urgência, foto, endereço e agendamento. No final, a faixa da taxa aparece antes de você confirmar — e um humano assume quando você pedir.</p>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-ghost" id="restart-sim" type="button">Reiniciar simulação</button>
+            <a class="btn btn-wa" href="https://wa.me/5562992633484?text=Ol%C3%A1%2C%20preciso%20de%20um%20encanador%20urgente." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+          </div>
+          <p class="bot-note">No WhatsApp real, cada agendamento é confirmado por um humano da equipe de plantão. Valores e horários da simulação são ilustrativos: <strong>[VALOR A CONFIRMAR PELO PROPRIETÁRIO]</strong>.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- O QUE O BOT FAZ -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Funcionalidades exclusivas // Fluxo operacional</p>
+        <h2>O que o bot faz <span class="yl">por você</span></h2>
+        <p class="lede">Zero menus infinitos. Um sistema concebido sob a pressão de emergências reais para garantir despacho.</p>
+      </div>
+      <div class="feature-cards">
+        <article class="card reveal">
+          <span class="tck">01</span>
+          <h3>Entende a urgência</h3>
+          <p>Classifica o incidente por gravidade. Em canos rompidos, dá orientações críticas de fechamento de registro.</p>
+        </article>
+        <article class="card reveal">
+          <span class="tck">02</span>
+          <h3>Pede foto e endereço sem ligação</h3>
+          <p>Sem necessidade de descrever tecnicamente o encanamento. Basta enviar a foto no WhatsApp; o encanador já chega com as peças certas.</p>
+          <span class="prio">Redução de erros de diagnóstico</span>
+        </article>
+        <article class="card reveal">
+          <span class="tck">03</span>
+          <h3>Mostra a faixa da taxa antes de agendar</h3>
+          <p>Transparência de custos de visita técnica e regras de cobrança antes de confirmar qualquer agendamento.</p>
+          <span class="prio">Clareza antes do deslocamento</span>
+        </article>
+        <article class="card reveal">
+          <span class="tck">04</span>
+          <h3>Agenda e confirma — e chama um humano</h3>
+          <p>Não quer bot? Quer tirar dúvida complexa? Um único botão transfere a conversa para um humano.</p>
+          <span class="prio">Human-in-the-loop garantido</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUANDO UM HUMANO ENTRA -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Segurança operacional // Escalação técnica</p>
+        <h2>Quando um <span class="yl">humano entra</span></h2>
+        <p class="lede" style="font-family:var(--font-display);font-stretch:125%;font-weight:800;text-transform:uppercase;font-size:20px;color:var(--text)">“O bot organiza. Quem resolve é gente.”</p>
+      </div>
+      <div class="handoff-rows reveal">
+        <div class="handoff-row">
+          <div><span class="mono">Gatilho crítico // Protocolo Alfa</span><h3>Emergência com água jorrando</h3></div>
+          <p>Técnico de plantão recebe notificação de alta prioridade. A conversa do chat é sincronizada com a central.</p>
+          <span class="mono">Transferência: direta</span>
+        </div>
+        <div class="handoff-row">
+          <div><span class="mono">Caso atípico // Protocolo Beta</span><h3>Bot não entendeu o relato</h3></div>
+          <p>Se a avaria for incomum ou as respostas fugirem do padrão pré-estabelecido, a triagem se encerra e um humano assume.</p>
+          <span class="mono">Transferência: automática</span>
+        </div>
+        <div class="handoff-row">
+          <div><span class="mono">Solicitação do cliente // Protocolo Gama</span><h3>Cliente pediu “humano”</h3></div>
+          <p>Sem labirintos nem insistência mecânica. Tocou em “Falar com humano”, a automação silencia e a central assume.</p>
+          <span class="mono">Transferência: direta · 0 atrito</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="wrap">
+      <div class="cta-band cta-band-dark reveal">
+        <h2>Quer esse atendimento no seu WhatsApp? Chame a gente agora.</h2>
+        <p>Teste o fluxo com a equipe de plantão em Goiânia. Atendimento 24 horas.</p>
+        <a class="btn btn-wa" href="https://wa.me/5562992633484?text=Ol%C3%A1%2C%20preciso%20de%20um%20encanador%20urgente." target="_blank" rel="noopener">Chamar no WhatsApp real · 62 99263-3484</a>
+        <p class="mono">Plantão contínuo em Goiânia</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="index.html"><span class="mark" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg></span>Santos Manutenções</a>
+        <p style="margin-top:14px">Pronto atendimento hidráulico, caça-vazamentos e desentupimento técnico em Goiânia.</p>
+        <p class="mono" style="margin-top:12px;color:var(--yellow)">★ 5,0 · 18 avaliações no Google</p>
+      </div>
+      <div>
+        <h4>Base operacional</h4>
+        <ul>
+          <li>Rua Sergipe, Solar Campinas</li>
+          <li>Goiânia/GO — CEP 74805-100</li>
+          <li>REG: GYN-CENTRAL // Despacho ativo</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Central de atendimento</h4>
+        <ul>
+          <li><a href="tel:+5562992633484">+55 62 99263-3484</a></li>
+          <li>Aberto 24 horas, todos os dias</li>
+          <li>● Plantão 24h</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Links regulatórios</h4>
+        <ul>
+          <li><a href="privacidade.html">Política de Privacidade</a></li>
+          <li><a href="termos.html">Termos de Uso</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="mono">© <span data-year>2026</span> Santos Manutenções. Todos os direitos reservados.</span>
+      <span class="mono">Site demonstração criado por Tiyan Digital · Valores a confirmar pelo proprietário</span>
+    </div>
+  </div>
+</footer>
+
+<div class="thumbbar" role="navigation" aria-label="Ação rápida">
+  <a class="btn btn-wa" href="https://wa.me/5562992633484?text=Ol%C3%A1%2C%20preciso%20de%20um%20encanador%20urgente." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+  <a class="btn btn-ghost" href="bot.html">Ver o bot</a>
+</div>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/chat-bot.js"></script>
+</body>
+</html>
